@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+        }
+        .download-btn {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background: #0056b3;
+        }
+        .instructions {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Favicon Generator for Hometro</h1>
+        
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Upload your logo.png file using the input below</li>
+                <li>The generator will create favicons in multiple sizes</li>
+                <li>Download each favicon and place them in your public/ directory</li>
+                <li>Delete this HTML file after generating favicons</li>
+            </ol>
+        </div>
+
+        <input type="file" id="logoInput" accept="image/*">
+        
+        <div id="faviconContainer"></div>
+    </div>
+
+    <script>
+        document.getElementById('logoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    generateFavicons(event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function generateFavicons(imageSrc) {
+            const container = document.getElementById('faviconContainer');
+            container.innerHTML = '';
+
+            const sizes = [
+                { size: 16, name: 'favicon-16x16.png', optimize: true },
+                { size: 32, name: 'favicon-32x32.png', optimize: true },
+                { size: 48, name: 'favicon-48x48.png', optimize: false },
+                { size: 180, name: 'apple-touch-icon.png', optimize: false },
+                { size: 192, name: 'android-chrome-192x192.png', optimize: false },
+                { size: 512, name: 'android-chrome-512x512.png', optimize: false }
+            ];
+
+            sizes.forEach(({ size, name, optimize }) => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+
+                const img = new Image();
+                img.onload = function() {
+                    // Clear canvas with transparent background
+                    ctx.clearRect(0, 0, size, size);
+                    
+                    // For small favicons, use a more aggressive scaling approach
+                    let scale, x, y, scaledWidth, scaledHeight;
+                    
+                    if (optimize && size <= 32) {
+                        // For small favicons, fill more of the space (90% instead of 100%)
+                        scale = Math.min(size / img.width, size / img.height) * 0.9;
+                        scaledWidth = img.width * scale;
+                        scaledHeight = img.height * scale;
+                        x = (size - scaledWidth) / 2;
+                        y = (size - scaledHeight) / 2;
+                    } else {
+                        // Normal scaling for larger icons
+                        scale = Math.min(size / img.width, size / img.height);
+                        scaledWidth = img.width * scale;
+                        scaledHeight = img.height * scale;
+                        x = (size - scaledWidth) / 2;
+                        y = (size - scaledHeight) / 2;
+                    }
+                    
+                    ctx.drawImage(img, x, y, scaledWidth, scaledHeight);
+                    
+                    // Create download link
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = name;
+                        link.className = 'download-btn';
+                        link.textContent = `Download ${name}`;
+                        
+                        const div = document.createElement('div');
+                        div.style.margin = '20px 0';
+                        div.innerHTML = `<h4>${name} (${size}x${size})${optimize ? ' - Optimized for visibility' : ''}</h4>`;
+                        div.appendChild(canvas);
+                        div.appendChild(link);
+                        container.appendChild(div);
+                    });
+                };
+                img.src = imageSrc;
+            });
+        }
+    </script>
+</body>
+</html>
