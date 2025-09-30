@@ -218,15 +218,16 @@ export default function LandingPage() {
               >
                 List Property Now
               </Button>
-              <Button
-                size="lg"
-                className="bg-black text-white px-8 py-4 rounded-xl hover:opacity-80 transition-all duration-300"
-                onClick={() =>
-                  window.open("https://wa.me/918080961469", "_blank")
-                }
+              <a
+                href="https://wa.me/918080961469"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl border-2 border-[#6A5CFF] text-[#6A5CFF] bg-white hover:scale-105 transition-all duration-200 shadow-lg px-6 py-1.5 text-base font-semibold flex items-center gap-2 focus:ring-2 focus:ring-[#6A5CFF]/50 justify-center"
+                style={{ minHeight: "32px" }}
               >
-                <MessageCircle className="mr-2 w-5 h-5" /> WhatsApp Us
-              </Button>
+                <MessageCircle className="w-4 h-4 mr-2 animate-pulse" />
+                WhatsApp US
+              </a>
             </div>
           </div>
         </div>
