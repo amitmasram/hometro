@@ -238,7 +238,7 @@ export default function LandingPage() {
           <div className="flex items-center mb-3">
             <span className="text-gray-400 text-sm mr-2">Follow us on</span>
             <a
-              href="https://instagram.com/hometro.co"
+              href="https://instagram.com/hometro.in"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-white transition-colors"

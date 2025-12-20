@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description:
     "Connect directly with property owners in Mumbai. No brokerage fees. Verified listings for flats, land, plots & commercial properties.",
   keywords: "property, real estate, Mumbai, no broker, direct owner, flats, land, plots, commercial",
+  icons: {
+    icon: "/favicon.ico",
+  },
   openGraph: {
     title: "Hometro - Direct Property Deals",
     description: "Find or sell property directly with verified owners. No brokers, no hassle.",
