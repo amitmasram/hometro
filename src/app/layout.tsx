@@ -1,9 +1,7 @@
 import type { ReactNode } from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { GeistSans } from "geist/font/sans"
 import "./globals.css"
-
-const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Hometro - Find or Sell Property Direct | No Brokers, Verified Owners",
@@ -26,8 +24,8 @@ export default function RootLayout({
   children: ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`scroll-smooth ${GeistSans.variable}`}>
+      <body className={GeistSans.className}>{children}</body>
     </html>
   )
 }

@@ -9,7 +9,7 @@ export default function LandingPage() {
   const [selectedCity] = useState("Nagpur") // Can be made dynamic later
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Header */}
       <header className="sticky top-2 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100/60">
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 mx-auto py-3 flex items-center justify-between max-w-screen-2xl">
@@ -89,8 +89,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-10 sm:py-12 md:py-14 bg-[#F9FAFB] text-center">
+      {/* Final CTA Section with gradient fade to footer */}
+      <section className="pt-10 sm:pt-12 md:pt-14 pb-20 sm:pb-24 md:pb-28 text-center bg-gradient-to-b from-white via-white to-[#dde2ee]">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 mb-3 sm:mb-4 tracking-tight px-2 sm:px-0">
@@ -125,35 +125,34 @@ export default function LandingPage() {
         </div>
       </section>
       {/* Footer */}
-      <footer className="py-6 sm:py-8 bg-gray-900 text-white">
-        <div className="container mx-auto px-4 sm:px-6 flex flex-col items-center">
-          <div className="flex items-center mb-3 flex-wrap justify-center gap-2">
-            <span className="text-gray-400 text-xs sm:text-sm mr-1 sm:mr-2">Follow us on</span>
-            <a
-              href="https://instagram.com/hometro.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 transition-all duration-300 instagram-link"
-              aria-label="Instagram"
-            >
-              <svg viewBox="0 0 24 24" className="w-5 h-5">
-                <defs>
-                  <linearGradient id="instagram-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#6A5CFF" />
-                    <stop offset="100%" stopColor="#9D5BFF" />
-                  </linearGradient>
-                </defs>
-                <path
-                  fill="currentColor"
-                  className="instagram-icon-path transition-all duration-300"
-                  d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
-                />
-              </svg>
-            </a>
+      <footer className="pt-0 pb-6 sm:pb-8 bg-[#dde2ee]">
+        <div className="container mx-auto px-8 sm:px-12 md:px-16 lg:px-24 xl:px-32 max-w-screen-2xl">
+          {/* Divider line */}
+          <div className="h-px bg-gray-400/50 mb-5 sm:mb-6" />
+          
+          {/* Footer content */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            {/* Copyright */}
+            <p className="text-xs sm:text-sm text-gray-600 order-2 sm:order-1">
+              © 2026 Hometro. All rights reserved.
+            </p>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-2 order-1 sm:order-2">
+              <span className="text-xs sm:text-sm text-gray-600">Follow us on</span>
+              <a
+                href="https://instagram.com/hometro.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-gray-700 transition-colors"
+                aria-label="Instagram"
+              >
+                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
+                  <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                </svg>
+              </a>
+            </div>
           </div>
-          <p className="text-xs sm:text-sm text-gray-400 text-center px-2">
-            © 2025 Hometro. Find the space in easy way!
-          </p>
         </div>
       </footer>
     </div>
